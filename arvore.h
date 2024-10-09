@@ -33,17 +33,40 @@ bool ehVazia(Arvore<T> arvore){
 }
 
 template<typename T>
-void addElem(Arvore<T> &arvore){
+void addElem(Arvore<T> &arvore, T elemento){
+    Nodo<T>* aux = new Nodo<T>;
+    aux->elem = elemento;
+    aux->direita = NULL;
+    aux->esquerda = NULL;
     if(arvore.raiz == NULL){
-
+        arvore.raiz = aux;
+    }else{
+        addElemSub(arvore.raiz,aux);
     }
+    arvore.cardinalidade++;
+}
+template<typename T>
+void addElemSub(Nodo<T>* raiz, Nodo<T>* aux){
+    if(aux->elem < raiz->elem){
+        if(raiz->esquerda == NULL){
+            raiz->esquerda = aux;
+        }else{
+            addElemSub(raiz->esquerda,aux);
+        }
+    }else if (raiz->direita == NULL){
+        raiz->direita = aux;
+        }else{
+            addElemSub(raiz->direita,aux);
+        }
 }
 
 template<typename T>
 void deletaArvore(Arvore<T> &arvore){
-    deletaNodo(arvore.raiz);
-    arvore.raiz = NULL;
-    arvore.cardinalidade = 0;
+    if(arvore.raiz != NULL){    
+        deletaNodo(arvore.raiz);
+        arvore.cardinalidade = 0;
+        arvore.raiz = NULL;
+    }
 }
 
 template<typename T>
