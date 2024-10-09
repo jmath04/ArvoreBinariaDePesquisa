@@ -11,5 +11,6 @@ int main(){
     addElem(arvore,4);
     addElem(arvore,2);
     addElem(arvore,7);
+
     deletaArvore(arvore);
 }

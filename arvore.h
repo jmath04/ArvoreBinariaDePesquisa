@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <queue>
 
 using namespace std;
 
@@ -58,6 +59,11 @@ void addElemSub(Nodo<T>* raiz, Nodo<T>* aux){
         }else{
             addElemSub(raiz->direita,aux);
         }
+}
+
+template<typename T> 
+void mostrarArvore(Arvore<T> arvore){ // ideia usar uma fila para guardar os nodos pedentes para mostrar eles
+
 }
 
 template<typename T>
