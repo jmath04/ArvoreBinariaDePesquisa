@@ -122,5 +122,10 @@ bool existeElem(Arvore<T> arvore, T elem){
     return existeElemNodo(arvore.raiz, elem) ? true : false;
 }
 
+template<typename T>
+void retiraElemArvore(Arvore<T> arvore, T elem){
+    
+}
+
 
 
