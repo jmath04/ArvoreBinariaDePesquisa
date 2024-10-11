@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <vector>
 
 using namespace std;
 
@@ -61,9 +62,23 @@ void addElemSub(Nodo<T>* raiz, Nodo<T>* aux){
 }
 
 template<typename T> 
-void mostrarArvore(Arvore<T> arvore){ // ideia usar uma fila para guardar os nodos pedentes para mostrar eles
-    
+void mostraNodo(Nodo<T>* nodo){
+    cout << nodo->elem << " ";
+    if(nodo->esquerda != NULL){
+        mostraNodo(nodo->esquerda);
+    }
+    if(nodo->direita != NULL){
+        mostraNodo(nodo->direita);
+    }
 }
+
+template<typename T> 
+void mostrarArvore(Arvore<T> arvore){ // ideia usar uma fila para guardar os nodos pedentes para mostrar eles
+    mostraNodo(arvore.raiz);
+}
+
+
+
 
 template<typename T>
 void deletaArvore(Arvore<T> &arvore){
