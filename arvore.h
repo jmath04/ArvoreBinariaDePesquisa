@@ -77,8 +77,16 @@ void mostrarArvore(Arvore<T> arvore){ // ideia usar uma fila para guardar os nod
     mostraNodo(arvore.raiz);
 }
 
-
-
+template<typename T>
+void deletaNodo(Nodo<T>* subArvore){
+    if(subArvore->esquerda != NULL){
+        deletaNodo(subArvore->esquerda);
+    }
+    if(subArvore->direita != NULL){
+        deletaNodo(subArvore->direita);
+    }
+    delete subArvore;
+}
 
 template<typename T>
 void deletaArvore(Arvore<T> &arvore){
@@ -90,12 +98,29 @@ void deletaArvore(Arvore<T> &arvore){
 }
 
 template<typename T>
-void deletaNodo(Nodo<T>* subArvore){
-    if(subArvore->esquerda != NULL){
-        deletaNodo(subArvore->esquerda);
+bool existeElemNodo(Nodo<T>* raiz, T elem){
+    if(elem == raiz->elem){
+        return true;
     }
-    if(subArvore->direita != NULL){
-        deletaNodo(subArvore->direita);
+    if(raiz->direita == NULL and raiz->esquerda == NULL){
+        return false;
     }
-    delete subArvore;
+    if(elem > raiz->elem and raiz->direita != NULL){
+        return existeElemNodo(raiz->direita, elem);
+    }else{
+        if(raiz->esquerda != NULL){
+            return existeElemNodo(raiz->esquerda, elem);
+        }else{
+            return false;
+        }
+        
+    }
 }
+
+template<typename T>
+bool existeElem(Arvore<T> arvore, T elem){
+    return existeElemNodo(arvore.raiz, elem) ? true : false;
+}
+
+
+

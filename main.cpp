@@ -11,6 +11,7 @@ int main(){
     addElem(arvore,4);
     addElem(arvore,2);
     addElem(arvore,7);
-    mostrarArvore(arvore);
+    mostrarArvore(arvore); 
+    existeElem(arvore, 5) ? cout << " sim " << endl : cout << " nao " << endl;
     deletaArvore(arvore);
 }
