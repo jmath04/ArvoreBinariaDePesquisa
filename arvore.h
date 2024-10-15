@@ -123,8 +123,44 @@ bool existeElem(Arvore<T> arvore, T elem){
 }
 
 template<typename T>
+void retiraNdoDesempate(Nodo<T>** nodo, Nodo<T>** aux){
+    if((*nodo)->direita != NULL){
+        retiraNdoDesempate(&(*nodo)->direita,&(*aux));
+    }else{
+        (*aux)->elem = (*nodo)->elem;
+        (*aux) = (*nodo);
+        (*nodo) = (*nodo)->esquerda;
+    }
+}
+
+template<typename T>
+void retiraElemNdo(Nodo<T>** nodo, T elem){
+    Nodo<T>* aux;
+    if((*nodo)->elem == elem){
+        aux = (*nodo);
+        if((*nodo)->direita == NULL){
+            (*nodo) = (*nodo)->esquerda;
+        }else if((*nodo)->esquerda == NULL){
+                (*nodo) = (*nodo)->direita;
+        }else{
+            retiraNdoDesempate(&aux->esquerda,&aux);
+        }
+        delete aux;
+        return;
+    }
+    if((*nodo)->elem > elem){
+        retiraElemNdo(&(*nodo)->esquerda, elem);
+    }else{
+        retiraElemNdo(&(*nodo)->direita, elem);
+    }
+}
+
+template<typename T>
 void retiraElemArvore(Arvore<T> arvore, T elem){
-    
+    if(!existeElem(arvore,elem)){
+        throw("o elemento não existe na arvore");
+    }
+    retiraElemNdo(&arvore.raiz,elem);
 }
 
 
