@@ -73,7 +73,7 @@ void mostraNodo(Nodo<T>* nodo){
 }
 
 template<typename T> 
-void mostrarArvore(Arvore<T> arvore){ // ideia usar uma fila para guardar os nodos pedentes para mostrar eles
+void mostrarArvore(Arvore<T> arvore){ 
     mostraNodo(arvore.raiz);
 }
 
