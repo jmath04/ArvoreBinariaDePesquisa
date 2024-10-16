@@ -155,11 +155,12 @@ void retiraElemNdo(Nodo<T>** nodo, T elem){
 }
 
 template<typename T>
-void retiraElemArvore(Arvore<T> arvore, T elem){
+void retiraElemArvore(Arvore<T>& arvore, T elem){
     if(!existeElem(arvore,elem)){
         throw("o elemento não existe na arvore");
     }
     retiraElemNdo(&arvore.raiz,elem);
+    arvore.cardinalidade--;
 }
 
 
